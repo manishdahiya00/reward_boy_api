@@ -20,6 +20,9 @@ test:
 
 production:
   <<: *default
-  database: api_production
-  username: api
-  password: <%= ENV["API_DATABASE_PASSWORD"] %>
+  database: reward_boy
+  url: postgresql://root:2mFwCEnl4lBiz7Z802tOlXVu0XPt5Co1@dpg-crdgq9t2ng1s73fuusd0-a/reward_boy
+  username: root
+  password: 2mFwCEnl4lBiz7Z802tOlXVu0XPt5Co1
+  host: dpg-crdgq9t2ng1s73fuusd0-a
+  port: 5432
