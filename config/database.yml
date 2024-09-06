@@ -20,9 +20,10 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: reward_boy
-  url: postgresql://root:2mFwCEnl4lBiz7Z802tOlXVu0XPt5Co1@dpg-crdgq9t2ng1s73fuusd0-a/reward_boy
   username: root
   password: 2mFwCEnl4lBiz7Z802tOlXVu0XPt5Co1
-  host: dpg-crdgq9t2ng1s73fuusd0-a
+  url: postgresql://root:2mFwCEnl4lBiz7Z802tOlXVu0XPt5Co1@dpg-crdgq9t2ng1s73fuusd0-a.singapore-postgres.render.com/reward_boy
   port: 5432
