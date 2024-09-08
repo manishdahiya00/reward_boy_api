@@ -27,7 +27,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_131605) do
   create_table "offers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
-    t.string "terms"
     t.float "amount"
     t.string "action_url"
     t.text "small_img_url"
@@ -73,6 +72,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_06_131605) do
     t.string "subtitle"
     t.string "amount"
     t.string "user_id"
+    t.string "redeem_request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

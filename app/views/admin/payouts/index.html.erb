@@ -1,0 +1,60 @@
+<div class="container-fluid py-4">
+  <% if notice %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+  <div class="header d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Listing Payouts</h2>
+    <%= link_to "Add Payout", new_admin_payout_path, class: "btn btn-success" %>
+  </div>
+  <% if @payouts.present? %>
+    <div class="table-responsive table-bordered">
+      <table class="table table-hover ">
+        <thead class="table-light">
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Date Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @payouts.each do |payout| %>
+            <tr>
+              <td><%= payout.id %></td>
+              <td><%= payout.title %></td>
+              <td>
+                <% if payout.status == true %>
+                  <span class="text-success">&#10004;</span>
+                <% else %>
+                  <span class="text-danger">&#10008;</span>
+                <% end %>
+              </td>
+              <td><%= payout.amounts %></td>
+              <td>
+              </td>
+              <td><%= payout.created_at.strftime("%d/%m/%y %I:%M %p") %></td>
+              <td>
+                <div class="d-flex gap-2">
+                  <%= link_to "Edit", edit_admin_payout_path(payout), class: "btn btn-primary btn-sm" %>
+                  <%= button_to "Delete", admin_payout_path(payout), method: :delete, data: { confirm: "Are you sure you want to delete this payout?" }, class: "btn btn-danger btn-sm" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <%= will_paginate @payouts, class: "page-item justify-content-center" %>
+    </div>
+  <% else %>
+    <div class="alert alert-info" role="alert">
+      No payouts Found
+    </div>
+  <% end %>
+</div>

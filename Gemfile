@@ -59,3 +59,5 @@ end
 gem "grape", "~> 2.1"
 
 gem "google-id-token", "~> 1.4"
+
+gem "will_paginate", "~> 4.0"

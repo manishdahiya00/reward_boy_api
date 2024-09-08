@@ -1,0 +1,54 @@
+<%= form_for([:admin, question], html: { class: "needs-validation", novalidate: true }) do |f| %>
+  <% if question.errors.any? %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <h5 class="alert-heading"><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h5>
+      <ul class="mb-0">
+        <% question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title mb-0">Question Details</h5>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <%= f.label :question, class: "form-label" %>
+            <%= f.text_field :question, class: "form-control", placeholder: "Enter question", required: true %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :option1, class: "form-label" %>
+            <%= f.text_field :option1, class: "form-control", placeholder: "Enter option1", required: true %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :option2, class: "form-label" %>
+            <%= f.text_field :option2, class: "form-control", placeholder: "Enter option2", required: true %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <%= f.label :option3, class: "form-label" %>
+            <%= f.text_field :option3, class: "form-control", placeholder: "Enter option3", required: true %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :option4, class: "form-label" %>
+            <%= f.text_field :option4, class: "form-control", placeholder: "Enter option4", required: true %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :correct_answer, class: "form-label" %>
+            <%= f.text_field :correct_answer, class: "form-control", placeholder: "Enter correct option", required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Cancel", admin_quiz_questions_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>

@@ -4,7 +4,6 @@ class CreateOffers < ActiveRecord::Migration[7.2]
     create_table :offers, id: :uuid do |t|
       t.string :title
       t.string :subtitle
-      t.string :terms
       t.float :amount
       t.string :action_url
       t.text :small_img_url

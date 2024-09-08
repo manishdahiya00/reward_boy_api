@@ -64,7 +64,7 @@ module API
           begin
             user = valid_user?(params[:userId], params[:securityToken])
             return { status: 500, message: INVALID_USER } unless user.present?
-            questions = []
+            questions = [{ question: "What is the capital of India?", options: ["New Delhi", "Tokyo", "Kerala", "Thailand"], correctAnswer: "New Delhi" }]
             all_questions = QuizQuestion.all.order("RANDOM()").order(created_at: :desc).limit(15)
             all_questions.each do |question|
               questions << {
@@ -73,7 +73,9 @@ module API
                 correctAnswer: question.correct_answer,
               }
             end
-            { status: 200, message: MSG_SUCCESS, questions: questions || [] }
+            res = { status: 200, message: MSG_SUCCESS, questions: questions || [] }
+            puts res
+            return res
           rescue Exception => e
             Rails.logger.info "API Exception :::: #{Time.now} :::: questions :::: #{params.inspect} :::: Error ::::#{e}"
             { status: 500, message: MSG_ERROR, error: e.message }
@@ -120,8 +122,8 @@ module API
             user = valid_user?(params[:userId], params[:securityToken])
             return { status: 500, message: INVALID_USER } unless user.present?
             if user.wallet_balance.to_f >= params[:amount].to_f
-              redeem_request = user.redeem_requests.create(upi_id: params[:upiId], amount: params[:amount])
-              user.transaction_histories.create(title: "Withdrawl Request", subtitle: redeem_request.status, amount: redeem_request.amount)
+              redeem_request = user.redeem_requests.create(upi_id: params[:upiId], amount: params[:amount], coins: params[:amount].to_i * 100)
+              user.transaction_histories.create(redeem_request_id: redeem_request.id, title: "Withdrawl Request", subtitle: redeem_request.status, amount: redeem_request.amount)
               new_balance = user.wallet_balance.to_f - params[:amount].to_f
               user.update(wallet_balance: new_balance)
               { status: 200, message: MSG_SUCCESS, balance: sprintf("%.2f", user.wallet_balance) }
@@ -149,7 +151,7 @@ module API
             all_history.each do |his|
               history << {
                 title: his.title,
-                subtitle: "#{his.created_at.strftime("%d/%m/%Y")} - #{his.subtitle}",
+                subtitle: "#{his.created_at.strftime("%d/%m/%Y")}",
                 amount: his.amount,
               }
             end
