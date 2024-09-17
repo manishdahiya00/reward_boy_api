@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   root "main#index"
   mount API::Base => "/"
+  get "/acdelete" => "main#acdelete"
   get "/admin" => "admin/login#new"
   post "/admin" => "admin/login#login"
   delete "/admin/logout" => "admin/login#logout"
