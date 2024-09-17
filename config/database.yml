@@ -22,7 +22,7 @@ production:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  database: reward_boy
+  database: defaultdb
   username: avnadmin
   password: AVNS_-uw25sgnoMPvDKax1us
   url: postgres://avnadmin:AVNS_-uw25sgnoMPvDKax1us@rewardboy-manishdahiya0944-3d19.c.aivencloud.com:28716/defaultdb?sslmode=require
