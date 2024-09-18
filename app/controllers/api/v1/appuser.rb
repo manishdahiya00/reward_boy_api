@@ -64,7 +64,7 @@ module API
           begin
             user = valid_user?(params[:userId], params[:securityToken])
             return { status: 500, message: INVALID_USER } unless user.present?
-            questions = [{ question: "What is the capital of India?", options: ["New Delhi", "Tokyo", "Kerala", "Thailand"], correctAnswer: "New Delhi" }]
+            questions = [{ question: "2 + 2 = ?", options: ["8", "4", "6", "10"], correctAnswer: "4" }]
             all_questions = QuizQuestion.all.order("RANDOM()").order(created_at: :desc).limit(15)
             all_questions.each do |question|
               questions << {
