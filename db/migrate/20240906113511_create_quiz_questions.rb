@@ -1,7 +1,6 @@
 class CreateQuizQuestions < ActiveRecord::Migration[7.2]
   def change
-    enable_extension("pgcrypto")
-    create_table :quiz_questions, id: :uuid do |t|
+    create_table :quiz_questions do |t|
       t.text :question
       t.string :option1
       t.string :option2

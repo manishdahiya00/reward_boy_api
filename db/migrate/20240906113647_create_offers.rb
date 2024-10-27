@@ -1,7 +1,6 @@
 class CreateOffers < ActiveRecord::Migration[7.2]
   def change
-    enable_extension("pgcrypto")
-    create_table :offers, id: :uuid do |t|
+    create_table :offers do |t|
       t.string :title
       t.string :subtitle
       t.float :amount

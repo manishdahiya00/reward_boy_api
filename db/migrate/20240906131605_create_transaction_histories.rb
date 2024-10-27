@@ -1,7 +1,6 @@
 class CreateTransactionHistories < ActiveRecord::Migration[7.2]
   def change
-    enable_extension("pgcrypto")
-    create_table :transaction_histories, id: :uuid do |t|
+    create_table :transaction_histories do |t|
       t.string :title
       t.string :subtitle
       t.string :amount

@@ -1,7 +1,6 @@
 class CreateUsers < ActiveRecord::Migration[7.2]
   def change
-    enable_extension("pgcrypto")
-    create_table :users, id: :uuid do |t|
+    create_table :users do |t|
       t.string :device_id
       t.string :device_type
       t.string :device_name
